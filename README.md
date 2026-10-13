@@ -16,6 +16,12 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Admin and store settings
+
+Copy `.env.example` to `.env.local` and configure a unique `ADMIN_PIN` of at least 12 characters, a random `ADMIN_SESSION_SECRET` of at least 32 characters, `SUPABASE_SERVICE_ROLE_KEY`, and the Supabase URL/anon key. Keep the PIN and service-role key server-only; do not add a `NEXT_PUBLIC_` prefix to secrets.
+
+Apply `supabase/migrations/20261012_store_settings.sql` to the Supabase project before using the admin dashboard. The migration creates persistent delivery-price and place-photo settings, a public photo bucket, and restricts menu writes to the server-side admin API. Admin sessions use an HTTP-only cookie and last 8 hours.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
